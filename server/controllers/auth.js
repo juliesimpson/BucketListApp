@@ -44,3 +44,9 @@ exports.signup = function(req, res, next) {
 		});	
 	});
 }
+
+exports.signin = function(req, res, next) {
+	// User has already had their email and pw auth
+	// we just need to give them a token
+	res.send({ token: createUserToken(req.user) });
+}
