@@ -21,7 +21,7 @@ class Video extends Component {
 			console.log(videos);
 			this.setState({
 				videos: videos,
-				selectedVideo: videos[1]
+				selectedVideo: videos[0]
 			}); // this.setState({videos}) same as this.setState({videos: videos})
 		});
 	}
