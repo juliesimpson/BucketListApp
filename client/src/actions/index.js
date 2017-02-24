@@ -1,11 +1,10 @@
 import axios from "axios";
+import { browserHistory } from "react-router";
 
 // const ROOT_URL = "http://rest.learncode.academy/api/julie";
 const ROOT_URL = "http://localhost:3000";
 
 export const CREATE_POSTS = "CREATE_POSTS";
-
-
 
 export function createPost(props) {
 	const request = axios.post(`${ROOT_URL}/posts`, props);
@@ -18,5 +17,10 @@ export function createPost(props) {
 export function signinUser({ email, password }){
 	return function(dispatch){
 		axios.post(`${ROOT_URL}/signin`, {email, password})
+			.then(response => {
+				browserHistory.push("/newitem");
+			})
+				.catch(() => {
+				});
 	}
 }
