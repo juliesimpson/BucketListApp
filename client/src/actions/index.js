@@ -23,6 +23,14 @@ export function signinUser({ email, password }){
 	}
 }
 
+// purpose of type is to catch unauth_user case
+// flips auth flag to false & there won't be any links associated with them
+// other thing to do is get rid of token
+export function signoutUser() {
+	localStorage.removeItem("token");
+	return { type: UNAUTH_USER };
+}
+
 export function authError(error) {
 	return {
 		type: AUTH_ERROR,
