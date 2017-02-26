@@ -9,8 +9,8 @@ import { Link } from "react-router";
 				return <NavItem href="/signout">Sign Out</NavItem>
 			}else {
 				return [
-					<NavItem key={1} href="#">Sign In</NavItem>,
-					<NavItem key={2} href="#">Sign Up</NavItem>
+					<NavItem key={1} href="/signin">Sign In</NavItem>,
+					<NavItem key={2} href="/signup">Sign Up</NavItem>
 				];
 			}
 		}	
