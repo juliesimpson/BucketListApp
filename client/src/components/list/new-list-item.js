@@ -10,26 +10,26 @@ class ListItem extends Component {
 	}
 
 	render() {
-		const { handleSubmit, fields: { title, category, url, content}}=this.props;
+		const { fields: { title, category, url, content}, handleSubmit}=this.props;
 		return(
 			<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
 				<h3>Create a New Post</h3>
 
 				<fieldset className="form-group">
 					<label>Title</label>
-					<input {...title} type="text" className="form-control" />
+					<input type="text" className="form-control" {...title} />
 				</fieldset>
 				<fieldset className="form-group">
 						<label>Category</label>
-						<input {...category} type="text" className="form-control" />
+						<input type="text" className="form-control" {...category} />
 				</fieldset>
 				<fieldset className="form-group">
 					<label>URL</label>
-					<input {...url} type="text" className="form-control" />
+					<input type="text" className="form-control" {...url} />
 				</fieldset>	
 				<fieldset className="form-group">
 					<label>Content</label>
-					<textarea {...content} type="text" rows="8" className="form-control text" />
+					<textarea type="text" rows="8" className="form-control text" {...content} />
 				</fieldset>	
 				<button type="submit" className="btn btn-primary">Submit</button>
 				<Link to="/" className="btn btn-danger">Cancel</Link>

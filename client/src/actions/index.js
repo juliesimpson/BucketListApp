@@ -1,11 +1,23 @@
 import axios from "axios";
 import { browserHistory } from "react-router";
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from "./types";
+import { 
+	AUTH_USER, 
+	UNAUTH_USER, 
+	AUTH_ERROR, 
+	CREATE_POSTS 
+} from "./types";
+
 import authReducer from "../reducers/auth_reducer";
 
-export const CREATE_POSTS = "CREATE_POSTS";
-// const ROOT_URL = "http://rest.learncode.academy/api/julie";
+// export const CREATE_POSTS = "CREATE_POSTS";
+
 const ROOT_URL = "http://localhost:3000";
+
+// This config variable will be used to get our token from local storage
+// and attach it to our header so that we can make an authenticated request.
+var config = {
+	headers: { authorization: localStorage.getItem("token") }
+}
 
 export function signupUser({ email, password }) {
 	return function(dispatch) {
@@ -52,10 +64,23 @@ export function authError(error) {
 	};
 }
 
+// export function createPost(props) {
+// 	const request = axios.post(`${ROOT_URL}/posts`, props);
+// 	return {
+// 		type: CREATE_POSTS,
+// 		payload: request
+// 	};
+// }
+
 export function createPost(props) {
-	const request = axios.post(`${ROOT_URL}/posts`, props);
-	return {
-		type: CREATE_POSTS,
-		payload: request
-	};
+	return function(dispatch) {
+		axios.post(`${ROOT_URL}/newitem`, { props }, config)
+		.then(request => {
+			dispatch({
+				type: CREATE_POSTS,
+				payload: request
+			});
+		browserHistory.push("/items");	
+		});
+	}
 }
